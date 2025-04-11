@@ -1,10 +1,17 @@
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
+
+int N=30, M=20;
+int size = 16;
+int w = size*N;
+int h = size*M;
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({200, 200}), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    RenderWindow window(sf::VideoMode({w, h}), "SFML works!");
+    CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Blue);
 
     while (window.isOpen())
     {
