@@ -2,27 +2,29 @@
 
 using namespace sf;
 
-int N=30, M=20;
-int size = 16;
-int w = size*N;
-int h = size*M;
+
 
 int main()
 {
-    RenderWindow window(sf::VideoMode({w, h}), "SFML works!");
-    CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Blue);
+    unsigned int width = 800 ,height = 600;
+    RenderWindow window;
+    window.create(VideoMode({width,height}), "Snake Game", Style::None);
 
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent())
         {
-            if (event->is<sf::Event::Closed>())
+            if (event->is<sf::Event::Closed>()){
                 window.close();
+            }
+            else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
+            {
+                if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
+                    window.close();
+            }
         }
 
         window.clear();
-        window.draw(shape);
         window.display();
     }
 }
